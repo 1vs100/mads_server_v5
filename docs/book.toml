@@ -1,0 +1,8 @@
+[book]
+title = "MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)"
+authors = ["reverse-engineering notes"]
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"

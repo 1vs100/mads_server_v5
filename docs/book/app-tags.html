@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>B. Tag tables - MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-24d77ec3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f835900a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="appendix-b-tag-tables"><a class="header" href="#appendix-b-tag-tables">Appendix B: Tag tables</a></h1>
+<h2 id="byte-level-conventions"><a class="header" href="#byte-level-conventions">Byte-level conventions</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Item</th><th>Encoding</th></tr>
+</thead>
+<tbody>
+<tr><td>Integers</td><td>big-endian</td></tr>
+<tr><td>Floats</td><td>IEEE 754 single precision, big-endian</td></tr>
+<tr><td>Strings in bodies</td><td><code>u16 BE</code> length, then bytes, no terminator (max 2000)</td></tr>
+<tr><td>Strings read from responses</td><td>the same, or a pointer and length (<code>ReadStrLen</code>)</td></tr>
+<tr><td>Booleans</td><td><code>u8</code>, 0 or 1</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="envelope-bytes"><a class="header" href="#envelope-bytes">Envelope bytes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Byte</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>05</code></td><td>protocol version, first byte of every message in both directions</td></tr>
+<tr><td>type</td><td>request type, see the table below</td></tr>
+<tr><td><code>3B</code> <code>;</code></td><td>time marker, followed by <code>u64</code></td></tr>
+<tr><td><code>1E</code></td><td>signature marker, followed by <code>u16 14</code> and the MAC</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="request-type-bytes"><a class="header" href="#request-type-bytes">Request type bytes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Type</th><th>Request</th><th>Sealed</th></tr>
+</thead>
+<tbody>
+<tr><td><code>C9</code></td><td>LocateService</td><td>no</td></tr>
+<tr><td><code>CB</code></td><td>OpenSession</td><td>time, sign</td></tr>
+<tr><td><code>CD</code></td><td>EnterZone</td><td>time, sign</td></tr>
+<tr><td><code>D1</code></td><td>CloseSession</td><td>time, sign</td></tr>
+<tr><td><code>D3</code></td><td>ImpressionUpdate</td><td>time, sign</td></tr>
+<tr><td><code>D6</code></td><td>Heartbeat</td><td>time, sign</td></tr>
+<tr><td><code>D8</code></td><td>PlayerUpdate</td><td>time, sign</td></tr>
+<tr><td><code>DA</code></td><td>Statistics</td><td>time, sign</td></tr>
+<tr><td><code>E4</code></td><td>player block (inside bodies, not a request)</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="body-tags-request-side"><a class="header" href="#body-tags-request-side">Body tags (request side)</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Tag</th><th>Hex</th><th>Type</th><th>Used by</th></tr>
+</thead>
+<tbody>
+<tr><td><code>=</code></td><td><code>3D</code></td><td><code>str16</code> caller string a (SKU name)</td><td>LocateService, OpenSession, impression record</td></tr>
+<tr><td><code>&gt;</code></td><td><code>3E</code></td><td><code>str16</code> caller string b (SKU version)</td><td>LocateService, OpenSession</td></tr>
+<tr><td><code>&lt;</code></td><td><code>3C</code></td><td><code>u8</code> session type, 1 = single player</td><td>OpenSession</td></tr>
+<tr><td>—</td><td><code>18</code></td><td><code>u8</code> encryption algorithm, 0</td><td>OpenSession</td></tr>
+<tr><td>—</td><td><code>1B</code></td><td><code>u8</code> hash algorithm, 1</td><td>OpenSession</td></tr>
+<tr><td>—</td><td><code>1C</code></td><td><code>str16</code> multiplayer GUID (v1.0.808.0 only)</td><td>OpenSession</td></tr>
+<tr><td><code>D</code></td><td><code>44</code></td><td><code>str16("1"×32)</code></td><td>OpenSession</td></tr>
+<tr><td>—</td><td><code>1D</code></td><td><code>str16</code> hashed hardware id, 32 hex characters</td><td>LocateService, OpenSession</td></tr>
+<tr><td>—</td><td><code>16</code></td><td><code>str16</code> AdClient version, <code>"XDK Test QFE 1v1009328.3"</code></td><td>OpenSession</td></tr>
+<tr><td><code>G</code></td><td><code>47</code></td><td><code>str16</code> zone name</td><td>EnterZone</td></tr>
+<tr><td><code>*</code></td><td><code>2A</code></td><td><code>u64</code> Massive player id</td><td>most bodies</td></tr>
+<tr><td><code>+</code></td><td><code>2B</code></td><td><code>u64</code> Massive session id</td><td>most bodies</td></tr>
+<tr><td>—</td><td><code>10</code></td><td><code>u32</code> bandwidth total size</td><td>EnterZone (optional, all three or none)</td></tr>
+<tr><td>—</td><td><code>11</code></td><td><code>u32</code> bandwidth total time</td><td>EnterZone (optional, all three or none)</td></tr>
+<tr><td>—</td><td><code>12</code></td><td><code>u16</code> bandwidth total items</td><td>EnterZone (optional, all three or none)</td></tr>
+<tr><td><code>!</code></td><td><code>21</code></td><td><code>u16</code> impression count A</td><td>ImpressionUpdate</td></tr>
+<tr><td><code>)</code></td><td><code>29</code></td><td><code>u16</code> impression count B</td><td>ImpressionUpdate</td></tr>
+<tr><td>—</td><td><code>E6</code></td><td><code>u32 L</code> + <code>3D</code> + <code>str16</code> name</td><td>ImpressionUpdate records</td></tr>
+<tr><td><code>X</code></td><td><code>58</code></td><td><code>u16</code> cache look-ups</td><td>Statistics</td></tr>
+<tr><td><code>Y</code></td><td><code>59</code></td><td><code>u16</code> cache hits</td><td>Statistics</td></tr>
+<tr><td><code>\</code></td><td><code>5C</code></td><td><code>u16</code> cache mismatches</td><td>Statistics</td></tr>
+<tr><td>—</td><td><code>E4</code></td><td>player block</td><td>most bodies</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="response-type-bytes"><a class="header" href="#response-type-bytes">Response type bytes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Type</th><th>Response</th><th>Signed</th></tr>
+</thead>
+<tbody>
+<tr><td><code>CA</code></td><td>LocateService</td><td>no</td></tr>
+<tr><td><code>CC</code></td><td>OpenSession</td><td>yes</td></tr>
+<tr><td><code>CE</code></td><td>EnterZone</td><td>yes</td></tr>
+<tr><td><code>D2</code></td><td>CloseSession</td><td>yes</td></tr>
+<tr><td><code>D4</code></td><td>ImpressionUpdate</td><td>yes</td></tr>
+<tr><td><code>D7</code></td><td>Heartbeat</td><td>yes</td></tr>
+<tr><td><code>D9</code></td><td>PlayerUpdate</td><td>yes</td></tr>
+<tr><td><code>DB</code></td><td>Statistics</td><td>yes</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="locate-response-tags"><a class="header" href="#locate-response-tags">Locate response tags</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Tag</th><th>Hex</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>—</td><td><code>0D</code></td><td><code>u16</code></td><td>auto reporting time, seconds</td></tr>
+<tr><td><code>"</code></td><td><code>22</code></td><td><code>str16</code></td><td>impression server host (index 5)</td></tr>
+<tr><td><code>-</code></td><td><code>2D</code></td><td><code>str16</code></td><td>media server host (index 4)</td></tr>
+<tr><td><code>:</code></td><td><code>3A</code></td><td><code>u16</code></td><td>server configurable options</td></tr>
+<tr><td><code>;</code></td><td><code>3B</code></td><td><code>u64</code></td><td>server time, exactly once</td></tr>
+<tr><td><code>?</code></td><td><code>3F</code></td><td><code>u8</code></td><td>statistic period, minutes</td></tr>
+<tr><td><code>H</code></td><td><code>48</code></td><td><code>str16</code></td><td>zone server host (index 3)</td></tr>
+<tr><td><code>I</code></td><td><code>49</code></td><td><code>u16</code></td><td>zone server port</td></tr>
+<tr><td><code>J</code></td><td><code>4A</code></td><td><code>u16</code></td><td>media server port</td></tr>
+<tr><td><code>K</code></td><td><code>4B</code></td><td><code>u16</code></td><td>impression server port</td></tr>
+<tr><td><code>T</code></td><td><code>54</code></td><td><code>u8</code></td><td>heartbeat period, minutes</td></tr>
+<tr><td><code>V</code></td><td><code>56</code></td><td><code>u8</code></td><td>logging level</td></tr>
+<tr><td><code>W</code></td><td><code>57</code></td><td><code>u8</code></td><td>unknown, discarded</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="signed-response-tags"><a class="header" href="#signed-response-tags">Signed response tags</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Tag</th><th>Hex</th><th>Type</th><th>Where</th></tr>
+</thead>
+<tbody>
+<tr><td><code>1E</code></td><td><code>1E</code></td><td>signature (<code>u16 14</code>, MAC)</td><td>all signed responses</td></tr>
+<tr><td><code>*</code></td><td><code>2A</code></td><td><code>u64</code> Massive player id</td><td>OpenSession</td></tr>
+<tr><td><code>+</code></td><td><code>2B</code></td><td><code>u64</code> Massive session id</td><td>OpenSession</td></tr>
+<tr><td><code>G</code></td><td><code>47</code></td><td><code>str16</code> zone name</td><td>OpenSession</td></tr>
+<tr><td><code>%</code></td><td><code>25</code></td><td><code>u16</code> number of <code>DD</code></td><td>EnterZone</td></tr>
+<tr><td><code>U</code></td><td><code>55</code></td><td><code>u16</code> number of <code>E3</code></td><td>EnterZone</td></tr>
+<tr><td>MAO</td><td><code>DD</code></td><td>MAO record</td><td>EnterZone</td></tr>
+<tr><td>order</td><td><code>E3</code></td><td>order block</td><td>EnterZone</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="order-block-sub-tags"><a class="header" href="#order-block-sub-tags">Order block sub-tags</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Hex</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>—</td><td><code>01</code></td><td><code>u16</code></td><td>asset count, counted</td></tr>
+<tr><td>—</td><td><code>03</code></td><td><code>u32</code></td><td>frequency cap</td></tr>
+<tr><td>—</td><td><code>13</code></td><td><code>u32</code></td><td>order id, counted</td></tr>
+<tr><td>asset</td><td><code>DE</code></td><td>asset block</td><td>one asset</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="mao-record-sub-tags"><a class="header" href="#mao-record-sub-tags">MAO record sub-tags</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Hex</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>—</td><td><code>08</code></td><td><code>f32</code></td><td>angle threshold</td></tr>
+<tr><td>—</td><td><code>09</code></td><td><code>f32</code></td><td>distance threshold</td></tr>
+<tr><td>—</td><td><code>0A</code></td><td><code>u16</code></td><td>size threshold, default 95</td></tr>
+<tr><td>—</td><td><code>0B</code></td><td><code>u32</code></td><td>media type, selects the object class; counted</td></tr>
+<tr><td>—</td><td><code>23</code></td><td><code>f32</code></td><td>adjustment, discarded</td></tr>
+<tr><td>asset ids</td><td><code>24</code></td><td><code>u16</code> count + <code>u32</code> array</td><td>asset ids; counted</td></tr>
+<tr><td>id</td><td><code>26</code></td><td><code>u32</code></td><td>IE id; counted</td></tr>
+<tr><td>name</td><td><code>27</code></td><td><code>str16</code></td><td>IE name; counted</td></tr>
+<tr><td>—</td><td><code>28</code></td><td><code>u16</code></td><td>rotation type, <code>0x10</code> = dynamic creator; counted</td></tr>
+<tr><td>—</td><td><code>2E</code></td><td><code>u8</code></td><td>primary match list size; counted</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="asset-block-sub-tags"><a class="header" href="#asset-block-sub-tags">Asset block sub-tags</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Hex</th><th>Type</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>—</td><td><code>02</code></td><td><code>u64</code></td><td>expiration, Unix time in ms; counted</td></tr>
+<tr><td>digest</td><td><code>04</code></td><td><code>u16</code> length + bytes</td><td>first 20 bytes = SHA-1 of the file; counted when not empty</td></tr>
+<tr><td>asset id</td><td><code>05</code></td><td><code>u32</code></td><td>asset id; counted</td></tr>
+<tr><td>—</td><td><code>06</code></td><td><code>u32</code></td><td>rotation duration, ms; must be non-zero; counted</td></tr>
+<tr><td>size</td><td><code>07</code></td><td><code>u32</code></td><td>exact download length; counted</td></tr>
+<tr><td>—</td><td><code>08</code></td><td><code>f32</code></td><td>angle threshold</td></tr>
+<tr><td>—</td><td><code>09</code></td><td><code>f32</code></td><td>distance threshold</td></tr>
+<tr><td>—</td><td><code>0A</code></td><td><code>u16</code></td><td>size threshold, default 95</td></tr>
+<tr><td>type</td><td><code>0B</code></td><td><code>u32</code></td><td>asset type; counted</td></tr>
+<tr><td>url</td><td><code>0C</code></td><td><code>str16</code></td><td>download path, for example <code>/&lt;order&gt;/&lt;crex&gt;/&lt;file&gt;</code>; counted</td></tr>
+<tr><td>—</td><td><code>15</code></td><td><code>u32</code></td><td>crex (creative) id; zero disables the <code>CreateAsset</code> checks; counted</td></tr>
+<tr><td>—</td><td><code>E5</code></td><td>nested block</td><td>contains <code>17</code> + <code>str16</code>, unknown</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="impression-record"><a class="header" href="#impression-record">Impression record</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Encoding</th></tr>
+</thead>
+<tbody>
+<tr><td>tag</td><td><code>E6</code></td></tr>
+<tr><td>length</td><td><code>u32 BE</code> = 3 + len(name)</td></tr>
+<tr><td><code>=</code></td><td><code>3D</code></td></tr>
+<tr><td>name</td><td><code>str16</code></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="statistics-fields"><a class="header" href="#statistics-fields">Statistics fields</a></h2>
+<p>The <code>58</code>, <code>59</code> and <code>5C</code> counters are the cache look-ups, hits and mismatches, read from the global block <code>dword_82A0EF04</code> at offsets <code>+0x60</code>, <code>+0x62</code> and <code>+0x64</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="app-functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="app-code.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="app-functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="app-code.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

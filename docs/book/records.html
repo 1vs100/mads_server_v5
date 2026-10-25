@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Records: MAO, orders, assets, impressions - MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-24d77ec3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f835900a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="records-ie-mao-orders-assets-impressions"><a class="header" href="#records-ie-mao-orders-assets-impressions">Records: IE (MAO), orders, assets, impressions</a></h1>
+<p>Records are parsed out of the EnterZone response body. The IE (inventory element) records are the <strong>ad placements</strong> in a zone, the order records set the rules for showing them, and the asset records describe the media files to download.</p>
+<p>Every record is a block: tag, <code>u32</code> length, fields. Each reader loops over its fields, counts some of them, and fails when the count is not exact. Readers skip unknown tags at or above <code>0xC8</code> and fail on unknown tags below it.</p>
+<p>Field names are the log names of the v1.0.808.0 debug client, whose parsers read the same tags with the same readers (<code>sub_823E7E68</code> for IE records, <code>sub_823E8D38</code> for orders, <code>sub_823E84D0</code> for assets). Example values are from that client’s <a href="capture.html">captured session</a>.</p>
+<h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
+<pre><code class="language-text">EnterZone response
+ ├─ IE count            (tag 25, u16)  = number of DD records
+ ├─ order count         (tag 55, u16)  = number of E3 blocks
+ ├─ IE records (DD)     placements: id, name, media type, thresholds, asset ids
+ └─ order blocks (E3)   order id, frequency cap, asset count
+     └─ asset records (DE)   id, url, digest, size, type, expiry
+</code></pre>
+<h2 id="ie-records-dd-sub_82503928-c"><a class="header" href="#ie-records-dd-sub_82503928-c">IE records (<code>DD</code>, <code>sub_82503928</code>) [C]</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Reader</th><th>Counted</th><th>Name</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>08</code></td><td><code>f32</code></td><td>no</td><td><code>IEAngleThreshold</code></td><td>default from <code>flt_82084958</code></td></tr>
+<tr><td><code>09</code></td><td><code>f32</code></td><td>no</td><td><code>IEDistanceThreshold</code></td><td>default from <code>flt_82002120</code></td></tr>
+<tr><td><code>0A</code></td><td><code>u16</code></td><td>no</td><td><code>IESizeThreshold</code></td><td>default 95 (<code>0x5F</code>)</td></tr>
+<tr><td><code>0B</code></td><td><code>u32</code></td><td>yes</td><td><code>IEMediaType</code></td><td>selects the object class (below)</td></tr>
+<tr><td><code>23</code></td><td><code>f32</code></td><td>no</td><td><code>IEAdjustment</code></td><td>read and discarded</td></tr>
+<tr><td><code>24</code></td><td><code>u16</code> count + <code>u32</code> array (<code>sub_824F9540</code>)</td><td>yes</td><td><code>IEAssetArray</code></td><td>asset ids (asset field <code>05</code>)</td></tr>
+<tr><td><code>26</code></td><td><code>u32</code></td><td>yes</td><td><code>IEId</code></td><td>placement id</td></tr>
+<tr><td><code>27</code></td><td>string</td><td>yes</td><td><code>IEName</code></td><td>placement name; the Lua side binds by name</td></tr>
+<tr><td><code>28</code></td><td><code>u16</code></td><td>yes</td><td><code>IERotationType</code></td><td><code>0x10</code> puts the record in the dynamic creator list</td></tr>
+<tr><td><code>2E</code></td><td><code>u8</code></td><td>yes</td><td><code>IEPrimaryMatchListSize</code></td><td>stored at object <code>+0x48</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>The record is accepted only when exactly six counted fields were read. Each id of field <code>24</code> is attached to the object with <code>sub_824F5B68</code>.</p>
+<p>In the capture, the six IE records of zone <code>CommercialBreak1</code> had media type 1030 (<code>0x406</code>, the video range) for <code>Video15_*</code> and <code>Video30_*</code> and 3 for <code>Text_*</code>, rotation type 2, primary match list size 1, angle threshold 0.57, distance threshold 0.5, size threshold 95 and adjustment 0. Field <code>24</code> held asset ids such as 278870, the values of asset field <code>05</code>.</p>
+<h3 id="media-type-to-object-class-c"><a class="header" href="#media-type-to-object-class-c">Media type to object class [C]</a></h3>
+<p>The compare chain on field <code>0B</code> uses signed compares (<code>cmpwi</code>):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Dynamic creator path (<code>28</code> = <code>0x10</code>)</th><th>Static path</th></tr>
+</thead>
+<tbody>
+<tr><td>below <code>0x400</code> (and every value with the top bit set)</td><td><code>CMassiveAdObjectTexture</code> creator, <code>sub_82502448</code></td><td><code>sub_82501FB0</code></td></tr>
+<tr><td><code>0x401</code> to <code>0x7FF</code></td><td><code>CMassiveAdObjectVideo</code> creator, <code>sub_82502648</code></td><td><code>sub_82502080</code></td></tr>
+<tr><td><code>0x801</code> to <code>0xFFF</code></td><td><code>CMassiveAdObjectAudio</code> creator, <code>sub_82502550</code></td><td><code>sub_824F58B0</code>, vtable <code>off_820846CC</code></td></tr>
+<tr><td>above <code>0x1000</code></td><td><code>CMassiveAdObjectModel</code> creator, <code>sub_82502760</code></td><td><code>sub_824F58B0</code>, vtable <code>off_82084714</code></td></tr>
+<tr><td>exactly <code>0x400</code>, <code>0x800</code> or <code>0x1000</code></td><td>no object</td><td>no object</td></tr>
+</tbody>
+</table>
+</div>
+<p>The dynamic creator classes are confirmed by their failure strings (<code>Dynamic CMassiveAdObjectTexture creation failed for IE: "%s"</code> and the equivalents, <code>0x820847D8</code> to <code>0x820848A8</code>). The static path classes are [I] by analogy. A boundary value creates no object, so the record and the whole response fail. The Massive test server used 3 for images and 1030 for videos; the values of the production server are not known.</p>
+<h2 id="order-blocks-e3-sub_82504510-c"><a class="header" href="#order-blocks-e3-sub_82504510-c">Order blocks (<code>E3</code>, <code>sub_82504510</code>) [C]</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Reader</th><th>Counted</th><th>Name</th></tr>
+</thead>
+<tbody>
+<tr><td><code>01</code></td><td><code>u16</code></td><td>yes</td><td><code>OrderAssetCount</code>, must equal the number of <code>DE</code> records</td></tr>
+<tr><td><code>03</code></td><td><code>u32</code></td><td>no</td><td><code>OrderFrequencyCap</code>, second argument of <code>CreateOrder</code>; 100000 in the capture</td></tr>
+<tr><td><code>13</code></td><td><code>u32</code></td><td>yes</td><td><code>OrderId</code>, first argument of <code>CreateOrder</code> (<code>0x8250B740</code>); also the first path segment of the asset URLs</td></tr>
+<tr><td><code>DE</code></td><td>asset block</td><td>no</td><td><code>OrderAssetBlock</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>The block is accepted only when exactly two counted fields were read and the asset count matches.</p>
+<h2 id="asset-records-de-sub_82504200-c"><a class="header" href="#asset-records-de-sub_82504200-c">Asset records (<code>DE</code>, <code>sub_82504200</code>) [C]</a></h2>
+<p>The reader dispatches tags <code>02</code> to <code>0C</code> through the byte table at <code>0x82084998</code>. Each entry is a byte offset from <code>0x825042C0</code>. Tags <code>15</code> and <code>E5</code> are handled outside the table. Tags <code>00</code>, <code>01</code> and <code>03</code> are not handled and fail the record.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Sub-tag</th><th>Reader</th><th>Counted</th><th><code>CreateAsset</code> argument / descriptor</th><th>Name</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>02</code></td><td><code>u64</code></td><td>yes</td><td><code>r9</code>, descriptor <code>+0x10</code></td><td><code>AssetExpiration</code></td><td>Unix time in ms (1240810902530 in the capture, 14 days after the session)</td></tr>
+<tr><td><code>04</code></td><td><code>u16</code> length + bytes (<code>ReadStrLen</code>)</td><td>yes, when not empty</td><td>copied to asset <code>+0x6C</code></td><td><code>AssetHash</code></td><td>first 20 bytes are compared with the SHA-1 of the download</td></tr>
+<tr><td><code>05</code></td><td><code>u32</code></td><td>yes</td><td><code>r4</code>, descriptor <code>+0x08</code></td><td><code>AssetId</code></td><td>the value MAO field <code>24</code> refers to</td></tr>
+<tr><td><code>06</code></td><td><code>u32</code></td><td>yes</td><td><code>r8</code>, asset <code>+0x50</code></td><td><code>AssetRotationDuration</code></td><td>display time in ms: 10000 for images, 15000 for 15 s videos</td></tr>
+<tr><td><code>07</code></td><td><code>u32</code></td><td>yes</td><td><code>r10</code>, descriptor <code>+0x28</code></td><td><code>AssetSize</code></td><td>expected download length</td></tr>
+<tr><td><code>08</code></td><td><code>f32</code></td><td>no</td><td><code>f1</code>, asset <code>+0x5C</code></td><td><code>AssetAngleThreshold</code></td><td></td></tr>
+<tr><td><code>09</code></td><td><code>f32</code></td><td>no</td><td><code>f2</code>, asset <code>+0x60</code></td><td><code>AssetDistanceThreshold</code></td><td></td></tr>
+<tr><td><code>0A</code></td><td><code>u16</code></td><td>no</td><td>asset <code>+0x5A</code></td><td><code>AssetSizeThreshold</code></td><td>default 95</td></tr>
+<tr><td><code>0B</code></td><td><code>u32</code></td><td>yes</td><td><code>r6</code>, descriptor <code>+0x24</code></td><td><code>AssetType</code></td><td>same values as the IE media type (3, 1030)</td></tr>
+<tr><td><code>0C</code></td><td>string</td><td>yes</td><td>descriptor <code>+0x2C</code></td><td><code>AssetUrl</code></td><td>download path, for example <code>/2607/236126/140912_Text_1_300x250.png</code></td></tr>
+<tr><td><code>15</code></td><td><code>u32</code></td><td>yes</td><td><code>r5</code>, descriptor <code>+0x18</code></td><td><code>CrexId</code></td><td>creative id, the second path segment of the URL; zero makes <code>CreateAsset</code> skip all validity checks</td></tr>
+<tr><td><code>E5</code></td><td>nested block (<code>sub_82503DD8</code>)</td><td>no</td><td>descriptor <code>+0x30</code></td><td>—</td><td>contains <code>17</code> + string; meaning [U]</td></tr>
+</tbody>
+</table>
+</div>
+<p>The record is accepted only when exactly eight counted fields were read. An empty field <code>04</code> yields no buffer and is not counted.</p>
+<p>The layout of <code>02</code> to <code>15</code> matches the asset records that <code>moio9/NFS-Online-Server</code> sends to MAD 3.2.1 clients. The hash differs: MAD 3.2 sends the MD5 of the file as 32 hex characters in field <code>04</code>; this build copies 20 bytes and compares them with a SHA-1.</p>
+<p>The captured URLs are paths without a host: <code>/&lt;order id&gt;/&lt;crex id&gt;/&lt;file name&gt;</code>. The client presumably requests them from the media server named in the locate response. All assets of the capture were loaded from the cache, so no download request was logged, and the SHA-1 reading of field <code>04</code> could not be checked against a file.</p>
+<h3 id="checks-in-createasset-0x824f7bd8-c"><a class="header" href="#checks-in-createasset-0x824f7bd8-c">Checks in <code>CreateAsset</code> (<code>0x824F7BD8</code>) [C]</a></h3>
+<p>When field <code>15</code> is non-zero, <code>CreateAsset</code> reports:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Code</th><th>Condition</th></tr>
+</thead>
+<tbody>
+<tr><td><code>0x258</code></td><td>field <code>05</code> is zero</td></tr>
+<tr><td><code>0x25D</code></td><td>field <code>07</code> is zero</td></tr>
+<tr><td><code>0x25E</code></td><td>field <code>06</code> is zero or field <code>02</code> is zero</td></tr>
+<tr><td><code>0x25B</code></td><td>field <code>0C</code> is missing or empty (logged with <code>Asset ID: %d</code>)</td></tr>
+<tr><td><code>0x25C</code></td><td>field <code>04</code> is missing</td></tr>
+</tbody>
+</table>
+</div>
+<p>Otherwise it allocates 20 bytes at <code>+0x6C</code> and copies the digest. Whether an asset that triggered one of these errors is still offered for download is [U]. The message texts assigned to these codes in <a href="errors.html">Errors and logging</a> were taken from string order and may not match the conditions above.</p>
+<h2 id="impression-records-e6-c"><a class="header" href="#impression-records-e6-c">Impression records (<code>E6</code>) [C]</a></h2>
+<p>The 2009 build writes one record per shown IE, containing only its name:</p>
+<pre><code class="language-text">E6 | u32 BE (3 + len(name)) | 3D '=' | u16 len | name bytes
+</code></pre>
+<p>Written by <code>sub_824FA6F0</code> (<code>massive_WriteImpressionRecordList</code>). The name is the IE name the Lua side bound, for example <code>Video15_1</code>, <code>Video30_2</code> or <code>Text_1</code>.</p>
+<p>The write-up describes an impression record with more fields (<code>timestamp</code>, <code>crexId</code>, <code>inventoryID</code>, <code>duration</code>, <code>avgSize</code>, <code>avgAngle</code>, and a type of <code>view</code> or <code>impression</code>). Those were seen in the XML form of the later HTTPS protocol (MAD 4), not in this binary. The 2009 record above does not carry them.</p>
+<p>The v1.0.808.0 debug build has binary writers for such reports, which the retail build does not contain. They write a <code>DF</code> block per report (<code>36</code> report type <code>u8</code>, <code>26</code> IE id <code>u32</code>, <code>15</code> crex id <code>u32</code>, <code>32</code> duration <code>u32</code>, <code>33</code> and <code>34</code> first and last time <code>u64</code>, <code>35</code> size <code>u16</code>, <code>30</code> angle <code>f32</code> or <code>31</code> falloff <code>f32</code>, <code>46</code> transition count <code>u16</code>) and an <code>E0</code> block per interaction (<code>26</code>, <code>15</code>, <code>33</code>, <code>1F</code> interaction type <code>u8</code>, <code>20</code> <code>u16</code>). All 88 ImpressionUpdates of its capture carried no records.</p>
+<h2 id="subscriber-and-zone-state-i"><a class="header" href="#subscriber-and-zone-state-i">Subscriber and zone state [I]</a></h2>
+<p>Zones hold MAO lists (<code>AddMAO</code>, <code>0x824F4C98</code>) and subscribers (<code>AddSubscriberToMAO</code>, <code>0x824F4D60</code>). These are the in-memory indexes that map a zone’s IE records to the IEs the Lua side binds. Their layout was not fully traced.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="responses.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="downloads.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="responses.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="downloads.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

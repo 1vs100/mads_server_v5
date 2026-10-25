@@ -1,0 +1,608 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>C. Reference code - MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-24d77ec3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f835900a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">MASSIVE ADS protocol: 1 vs 100 (Xbox 360, build v2.0.1149.0.02)</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="appendix-c-reference-code"><a class="header" href="#appendix-c-reference-code">Appendix C: Reference code</a></h1>
+<p>The maintained implementation is the Rust crate <code>crates/massive-proto</code>, with the field server <code>crates/massived</code>. The Python reference below is kept for comparison; the Rust tests check that both produce the same bytes.</p>
+<p>The Python reference is in <code>work/massive_envelope.py</code> (included below). It implements the sealing, the body primitives, the request bodies, the response framing and the MAC checks. Running it executes a self-test:</p>
+<pre><code class="language-text">$ python3 work/massive_envelope.py
+massive_envelope self-test OK (framing is internally consistent; not validated against live traffic)
+</code></pre>
+<p>The self-test checks:</p>
+<ul>
+<li>a sealed message of type <code>0xCB</code> round-trips and its MAC verifies;</li>
+<li>a tampered message fails the MAC;</li>
+<li>LocateService round-trips unsealed;</li>
+<li>the player block has the exact bytes from <code>massive_WritePlayerUpdateBlocks</code>;</li>
+<li>the token derivation (MD5 hex of the MAC string);</li>
+<li>heartbeat, statistics and impression messages round-trip;</li>
+<li>a signed response parses and its MAC verifies, and a corrupted one does not.</li>
+</ul>
+<p>The self-test does <strong>not</strong> prove the layout matches a real server.</p>
+<h2 id="massive_envelopepy"><a class="header" href="#massive_envelopepy">massive_envelope.py</a></h2>
+<pre><code class="language-python">#!/usr/bin/env python3
+"""
+Reference implementation of the MASSIVE ADS (MassiveAdClient3) wire envelope and
+field primitives, transcribed from the retail XEX (1vs100 v2.0.1149.0.02, title 584A07D1).
+
+Source functions (XEX addresses):
+  sub_824FA478  seal/finish buffer  -&gt; seal()          (type/time/sign framing)
+  sub_82505760  HMAC-SHA1           -&gt; hmac_sha1()
+  sub_824F9EA8  tag byte writer     -&gt; tag()
+  sub_824F9F68  u64 writer          -&gt; u64()
+  sub_824FA640  u16-length string   -&gt; str16()
+  sub_824F9EE8  u16 writer          -&gt; u16()
+  sub_824FA218  player-block writer -&gt; player_blocks()
+  sub_82501818  OpenSession body    -&gt; open_session_body()   (0xCB)
+  sub_824FF310  PlayerUpdate body   -&gt; player_update_body()  (0xD8)
+  sub_82503798  EnterZone body      -&gt; enter_zone_body()     (0xCD)
+  sub_82503520  Impression body     -&gt; impression_body()     (0xD3)
+  sub_824FEAF8  LocateService body  -&gt; locate_body()         (0xC9, unsealed)
+
+The Rust crate crates/massive-proto supersedes this file. The framing below is confirmed against the code. It has NOT been validated
+against live server traffic (the server is no longer reachable and no capture exists).
+The self-test only checks internal consistency of the framing.
+
+All integers are big-endian (PowerPC).
+"""
+import hmac
+import hashlib
+import struct
+
+# Constant HMAC key (32 ASCII '1' characters), literal at XEX 0x82084xxx
+# (also written as a body field, tag 'D', by sub_82501818).
+MASSIVE_HMAC_KEY = b"1" * 32
+
+# Envelope type bytes (first argument of sub_824FA478 at each call site)
+TYPE_OPEN_SESSION = 0xCB
+TYPE_LOCATE_SERVICE = 0xC9
+TYPE_CLOSE_SESSION = 0xD1
+TYPE_PLAYER_UPDATE = 0xD8
+TYPE_ENTER_ZONE = 0xCD
+TYPE_IMPRESSION = 0xD3
+TYPE_IMPRESSION_UPDATE = 0xD3
+TYPE_PLAYER_UPDATE_BLOCK = 0xE4     # block tag inside body (sub_824FA218)
+
+CLIENT_VERSION_STRING = b"XDK Test QFE 1v1009328.3"   # build string in OpenSession body (tag 0x16)
+USER_AGENT_PREFIX = b"Adclient Massive Inc./"          # User-Agent prefix (sub_82506308)
+
+
+def hmac_sha1(key: bytes, msg: bytes) -&gt; bytes:
+    """HMAC-SHA1 (sub_82505760 implements standard RFC 2104 ipad/opad)."""
+    return hmac.new(key, msg, hashlib.sha1).digest()
+
+
+# ---- field primitives (append semantics) --------------------------------------------
+
+def tag(t: int) -&gt; bytes:
+    return bytes([t &amp; 0xFF])
+
+
+def u16(v: int) -&gt; bytes:
+    return struct.pack("&gt;H", v &amp; 0xFFFF)
+
+
+def u32(v: int) -&gt; bytes:
+    return struct.pack("&gt;I", v &amp; 0xFFFFFFFF)
+
+
+def u64(v: int) -&gt; bytes:
+    return struct.pack("&gt;Q", v &amp; 0xFFFFFFFFFFFFFFFF)
+
+
+def str16(s: bytes) -&gt; bytes:
+    """u16 BE length followed by raw bytes (sub_824FA640, max 2000 bytes)."""
+    if len(s) &gt; 2000:
+        raise ValueError("string longer than 2000 bytes")
+    return u16(len(s)) + s
+
+
+# ---- sealing ------------------------------------------------------------------------
+
+def seal(body: bytes, msg_type: int, with_time: bool, sign: bool,
+         time8: bytes = b"\x00" * 8, key: bytes = MASSIVE_HMAC_KEY) -&gt; bytes:
+    """
+    Transcription of sub_824FA478(this, type, timeFlag, signFlag).
+
+    Resulting layout:
+      05 | type | u32 L | body | [';' | time8] | [1E] | [00 14 | HMAC-SHA1(20)]
+    where L = len(body) + (9 if with_time) + (1 if sign) + (22 if sign)  -- i.e. the
+    number of bytes that follow the L field.  HMAC covers  type|L|body|[;time]|[1E].
+    """
+    buf = bytearray(body)
+    if with_time:                       # append ';' + 8-byte time
+        buf += b";" + time8
+    if sign:                            # append 0x1E marker
+        buf += b"\x1e"
+    length = len(buf) + (22 if sign else 0)
+    buf = bytearray(u32(length)) + buf  # prepend L
+    buf = bytearray(tag(msg_type)) + buf  # prepend type
+    if sign:
+        mac = hmac_sha1(key, bytes(buf))  # HMAC over type|L|body|;time|1E
+        buf += u16(20) + mac              # append 00 14 + digest
+    buf = b"\x05" + bytes(buf)          # prepend 0x05 (message start marker)
+    return bytes(buf)
+
+
+def unseal(msg: bytes, key: bytes = MASSIVE_HMAC_KEY, expect_time: bool = True,
+           expect_sign: bool = True):
+    """
+    Inverse of seal(); returns (type, body, time8, mac_ok).
+    L counts every byte after the L field, including the signature trailer
+    (00 14 + 20-byte MAC) when signed.
+    """
+    if msg[0:1] != b"\x05":
+        raise ValueError("missing 0x05 start marker")
+    msg_type = msg[1]
+    length = struct.unpack("&gt;I", msg[2:6])[0]
+    if len(msg) &lt; 6 + length:
+        raise ValueError("truncated: L=%d have=%d" % (length, len(msg) - 6))
+    inner = msg[6:6 + length]          # body | [;time] | [1E] | [0014 | MAC]
+    mac_ok = None
+    if expect_sign:
+        if len(inner) &lt; 22 + 1:
+            raise ValueError("signed message too short")
+        trailer = inner[-22:]
+        mac = trailer[2:]
+        covered = msg[1:6 + length - 22]   # type|L|body|;time|1E  (HMAC input)
+        mac_ok = (trailer[:2] == u16(20)) and hmac_sha1(key, covered) == mac
+        inner = inner[:-22]
+        if inner[-1:] != b"\x1e":
+            raise ValueError("missing 0x1E sign marker")
+        inner = inner[:-1]
+    time8 = None
+    body = inner
+    if expect_time:
+        if len(inner) &lt; 9 or inner[-9:-8] != b";":
+            raise ValueError("missing ';' time marker")
+        time8 = inner[-8:]
+        body = inner[:-9]
+    return msg_type, body, time8, mac_ok
+
+
+# ---- body builders -------------------------------------------------------------------
+
+def player_blocks(players):
+    """
+    sub_824FA218 WritePlayerUpdateBlocks.  `players` is a list of up to 4 16-byte IDs.
+    Each occupied slot i writes:
+      E4 | 00 00 00 15 | 'W'(57) | i | 'A'(41) | 00 10 | &lt;16-byte id&gt;
+    The loop stops at the first empty slot.
+    """
+    out = b""
+    for i, pid in enumerate(players[:4]):
+        if pid is None:
+            break
+        if len(pid) != 16:
+            raise ValueError("player id must be 16 bytes")
+        out += tag(0xE4) + u32(0x15) + b"W" + tag(i) + b"A" + u16(0x10) + pid
+    return out
+
+
+def open_session_body(a: bytes, b: bytes, token: bytes, players=(), flag_token=True):
+    """
+    sub_82501818.  Field order (append):
+      '='(3D) str16(a) '&gt;'(3E) str16(b) '&lt;'(3C) 01 | 18 00 | 1B 01 |
+      'D'(44) str16('1'*32) | [1D str16(token)] | 16 str16(build) | player blocks
+    Sealed with type 0xCB, time=1, sign=1.
+    `a`/`b` are the SKU name and version; `token` is device_token().
+    """
+    body = b"="
+    body += str16(a) + b"&gt;" + str16(b)
+    body += b"&lt;" + b"\x01" + b"\x18" + b"\x00" + b"\x1b" + b"\x01"
+    body += b"D" + str16(MASSIVE_HMAC_KEY)
+    if flag_token and token:
+        body += b"\x1d" + str16(token)
+    body += b"\x16" + str16(CLIENT_VERSION_STRING)
+    body += player_blocks(list(players))
+    return seal(body, TYPE_OPEN_SESSION, with_time=True, sign=True)
+
+
+def player_update_body(session_id: int, session_token: int, players=()):
+    """
+    sub_824FF310.  Prepends are used, so the final order is:
+      '*'(2A) u64(session_token) '+'(2B) u64(session_id) | player blocks
+    where session_token = qword_82A0EEB0 and session_id = qword_82A0EEA8 (globals).
+    Sealed with type 0xD8, time=1, sign=1.
+    """
+    body = b"\x2a" + u64(session_token) + b"\x2b" + u64(session_id) + player_blocks(list(players))
+    return seal(body, TYPE_PLAYER_UPDATE, with_time=True, sign=True)
+
+
+def enter_zone_body(zone_name: bytes, session_id: int, session_token: int, players=(),
+                    peer_public=None, peer_private=None, peer_port=None):
+    """
+    sub_82503798.  Appended order:
+      'G'(47) str16(zone) '*'(2A) u64(token) '+'(2B) u64(session) | player blocks
+      [10 u32 (sub_824F9F28)] [11 u32] [12 u16 (sub_824F9EE8)]  (all three or none)
+    Sealed with type 0xCD, time=1, sign=1.
+    """
+    body = b"G" + str16(zone_name) + b"\x2a" + u64(session_token) + b"\x2b" + u64(session_id)
+    body += player_blocks(list(players))
+    if peer_public and peer_private and peer_port:
+        body += b"\x10" + u32(peer_public) + b"\x11" + u32(peer_private) + b"\x12" + u16(peer_port)
+    return seal(body, TYPE_ENTER_ZONE, with_time=True, sign=True)
+
+
+def impression_body(field_0x50: int, field_0x52: int):
+    """
+    sub_82503520.  '!'(21) u16(field_0x50) ')'(29) u16(field_0x52).
+    Per-impression records are appended by sub_82502C50 (not traced in detail).
+    Sealed with type 0xD3, time=1, sign=1.
+    """
+    body = b"!" + u16(field_0x50) + b")" + u16(field_0x52)
+    return seal(body, TYPE_IMPRESSION, with_time=True, sign=True)
+
+
+def locate_body(a: bytes, b: bytes, token: bytes):
+    """
+    sub_824FEAF8 (LocateService).  '='(3D) str16(a) '&gt;'(3E) str16(b)
+    [1D str16(token) when the device-id source is present], unsealed (no time, no signature), type 0xC9.
+    """
+    body = b"=" + str16(a) + b"&gt;" + str16(b) + b"\x1d" + str16(token)   # no '&lt;' tag in this writer
+    return seal(body, TYPE_LOCATE_SERVICE, with_time=False, sign=False)
+
+
+# ---- HTTP framing (sub_825061f0 / sub_82506308) ------------------------------------
+
+def http_request(method: str, path: str, host: str, body: bytes, user_agent_suffix: bytes = b"XDK Test QFE 1v1009328.3") -&gt; bytes:
+    """
+    Reproduces the request template:
+      'POST ' &lt;path&gt; ' HTTP/1.1\\r\\nHost:%s\\r\\nContent-Length:%d\\r\\n'
+      'Content-Type:application/massive\\r\\nUser-Agent:%s%s\\r\\n\\r\\n' &lt;body&gt;
+    GET (asset download) uses 'GET ' with the asset URL (sub_82506308 checks request type 0x54).
+    """
+    head = (
+        f"{method} {path} HTTP/1.1\r\n"
+        f"Host:{host}\r\n"
+        f"Content-Length:{len(body)}\r\n"
+        f"Content-Type:application/massive\r\n"
+        f"User-Agent:{USER_AGENT_PREFIX.decode()}{user_agent_suffix.decode()}\r\n\r\n"
+    ).encode("latin-1")
+    return head + body
+
+
+# ---- session identity (sub_824FC9F8 / sub_82501EF8) -------------------------------
+
+def console_mac_string(mac: bytes) -&gt; bytes:
+    """sub_824FC9F8: 6-byte MAC -&gt; '%02X:%02X:%02X:%02X:%02X:%02X' (17 chars + NUL in an 18-byte buffer)."""
+    if len(mac) != 6:
+        raise ValueError("MAC must be 6 bytes")
+    return ":".join("%02X" % b for b in mac).encode("ascii")
+
+
+def device_token(mac: bytes) -&gt; bytes:
+    """sub_824F3A90 + sub_82501EF8: lowercase hex of MD5(mac string). The 33-byte buffer
+    holds a NUL, but sub_824FA640 writes strnlen() bytes, so 32 characters go on the wire."""
+    return hashlib.md5(console_mac_string(mac)).hexdigest().encode("ascii")
+
+
+# ---- additional request bodies -----------------------------------------------------
+
+def heartbeat_body(session_id: int, session_token: int):
+    """sub_825074E0 (sealed type 0xD6, time+sign). Prepend-built: 2A QB0 2B QA8."""
+    body = b"\x2a" + u64(session_token) + b"\x2b" + u64(session_id)
+    return seal(body, 0xD6, with_time=True, sign=True)
+
+
+def stats_body(session_id: int, session_token: int, c_x: int, c_y: int, c_z: int):
+    """sub_82507800 (sealed type 0xDA, time+sign). Append-built:
+    2B QA8 2A QB0 'X' u16 'Y' u16 '\\' u16 (counters from global struct dword_82A0EF04 +0x60/+0x62/+0x64).
+    Field meaning of the three counters is not known [U]."""
+    body = b"\x2b" + u64(session_id) + b"\x2a" + u64(session_token)
+    body += b"X" + u16(c_x) + b"Y" + u16(c_y) + b"\\" + u16(c_z)
+    return seal(body, 0xDA, with_time=True, sign=True)
+
+
+def impression_record(ie_name: bytes) -&gt; bytes:
+    """sub_824FA6F0: E6 | u32 (len+3) | '=' | str16(name)."""
+    inner = b"=" + str16(ie_name)
+    return b"\xe6" + u32(len(inner)) + inner
+
+
+def impression_request(session_id: int, session_token: int, names, players=(), count_0x50=None, count_0x52=None):
+    """sub_82502C50 (records + player blocks) followed by sub_82503520 ('!' u16, ')' u16), sealed 0xD3."""
+    body = b"\x2a" + u64(session_token) + b"\x2b" + u64(session_id)
+    for n in names:
+        body += impression_record(n)
+    body += player_blocks(list(players))
+    body += b"!" + u16(count_0x50 or 0) + b")" + u16(count_0x52 or 0)
+    return seal(body, TYPE_IMPRESSION, with_time=True, sign=True)
+
+
+# ---- response framing (sub_824FA0B8 / sub_824FA108 / sub_824F9300) -----------------
+
+def parse_response(resp: bytes, key: bytes = MASSIVE_HMAC_KEY):
+    """
+    Response framing as implemented by the parsers (sub_825016D8, sub_82504728, ...):
+      05            protocol version, must be 0x05 (sub_824FA0B8 removes it before parsing)
+      type          request type + 1 (CA, CC, CE, D2, D4, D7, D9, DB)
+      u32 BE L      bytes that follow, including the 22-byte trailer when signed
+      ...tags...
+      1E u16(20) MAC  signature trailer; MAC = HMAC-SHA1 over everything before the 00 14 bytes
+    Returns (section_tag, inner_bytes_after_L_without_trailer, mac_ok).
+    """
+    if resp[0] != 0x05:
+        raise ValueError("version byte is not 0x05")
+    sec = resp[1]
+    length = struct.unpack("&gt;I", resp[2:6])[0]
+    inner = resp[6:6 + length]
+    # signature trailer is the last 22 bytes of the counted region, preceded by 0x1E
+    if len(inner) &lt; 23 or inner[-23:-22] != b"\x1e":
+        return sec, inner, None
+    mac = inner[-20:]
+    covered = resp[1:6 + length - 22]        # type | L | ... | 1E  (version byte excluded)
+    mac_ok = hmac_sha1(key, covered) == mac and inner[-22:-20] == u16(20)
+    return sec, inner[:-22], mac_ok
+
+
+# ---- self test ----------------------------------------------------------------------
+
+def _selftest():
+    time8 = bytes(range(1, 9))
+    body = b"hello-massive"
+    # signed + timed round trip
+    msg = seal(body, TYPE_OPEN_SESSION, with_time=True, sign=True, time8=time8)
+    t, b, tm, mac_ok = unseal(msg)
+    assert t == TYPE_OPEN_SESSION, t
+    assert b == body, b
+    assert tm == time8, tm
+    assert mac_ok is True, "HMAC did not verify"
+    # unsigned, untimed (locate) round trip
+    msg2 = seal(b"locate", TYPE_LOCATE_SERVICE, with_time=False, sign=False)
+    assert msg2[0] == 0x05 and msg2[1] == TYPE_LOCATE_SERVICE
+    assert struct.unpack("&gt;I", msg2[2:6])[0] == len(b"locate")
+    assert msg2[6:] == b"locate"
+    # tampering must break the MAC
+    bad = bytearray(msg); bad[10] ^= 0xFF
+    assert unseal(bytes(bad))[3] is False
+    # player block layout
+    pb = player_blocks([b"A" * 16])
+    assert pb == b"\xe4\x00\x00\x00\x15W\x00A\x00\x10" + b"A" * 16, pb.hex()
+    # identity token: MD5 hex of MAC string, no NUL on the wire
+    assert device_token(bytes.fromhex("001122aabbcc")) == hashlib.md5(b"00:11:22:AA:BB:CC").hexdigest().encode()
+    hb = heartbeat_body(1, 2)
+    assert unseal(hb)[0] == 0xD6 and unseal(hb)[3] is True
+    st = stats_body(1, 2, 3, 4, 5)
+    assert unseal(st)[0] == 0xDA and unseal(st)[3] is True
+    ir = impression_request(1, 2, [b"Video15_1"])
+    assert unseal(ir)[0] == TYPE_IMPRESSION and unseal(ir)[3] is True
+    # response round-trip: build a signed response (version 05, type CC, L, body, 1E 0014 MAC)
+    inner_no_sig = b"\x47\x01\x02\x03"     # arbitrary tagged content
+    L = len(inner_no_sig) + 1 + 22              # counts body | 1E | 0014 | MAC
+    covered = b"\xcc" + u32(L) + inner_no_sig + b"\x1e"
+    resp = b"\x05" + covered + u16(20) + hmac_sha1(MASSIVE_HMAC_KEY, covered)
+    sec, payload, ok = parse_response(resp)
+    assert sec == 0xCC and ok is True and payload == inner_no_sig + b"\x1e", (sec, payload, ok)
+    bad = bytearray(resp); bad[8] ^= 1
+    assert parse_response(bytes(bad))[2] is False
+    print("massive_envelope self-test OK (framing is internally consistent; not validated against live traffic)")
+
+
+if __name__ == "__main__":
+    _selftest()
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="app-tags.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="app-tags.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
