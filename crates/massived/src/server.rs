@@ -28,6 +28,8 @@ pub enum ServeError {
         addr: SocketAddr,
         source: std::io::Error,
     },
+    #[error("cannot adopt listener: {source}")]
+    Adopt { source: std::io::Error },
     #[error("no listen address configured")]
     NoListener,
 }
@@ -54,6 +56,44 @@ impl Server {
         if config.server.listen.is_empty() {
             return Err(ServeError::NoListener);
         }
+        let mut listeners = Vec::new();
+        for &addr in &config.server.listen {
+            let listener = TcpListener::bind(addr)
+                .await
+                .map_err(|source| ServeError::Bind { addr, source })?;
+            listeners.push(listener);
+        }
+        Self::with_listeners(config, listeners).await
+    }
+
+    /// Serves on listeners bound by the caller; `config.server.listen` is ignored.
+    /// Must run inside a Tokio runtime.
+    pub async fn with_std_listeners(
+        config: &Config,
+        listeners: Vec<std::net::TcpListener>,
+    ) -> Result<Self, ServeError> {
+        let listeners = listeners
+            .into_iter()
+            .map(|listener| {
+                let addr = listener
+                    .local_addr()
+                    .map_err(|source| ServeError::Adopt { source })?;
+                listener
+                    .set_nonblocking(true)
+                    .and_then(|()| TcpListener::from_std(listener))
+                    .map_err(|source| ServeError::Bind { addr, source })
+            })
+            .collect::<Result<Vec<_>, _>>()?;
+        Self::with_listeners(config, listeners).await
+    }
+
+    async fn with_listeners(
+        config: &Config,
+        listeners: Vec<TcpListener>,
+    ) -> Result<Self, ServeError> {
+        if listeners.is_empty() {
+            return Err(ServeError::NoListener);
+        }
         let handler = Handler::new(config)?;
         info!(
             zones = handler.content().zone_count(),
@@ -69,13 +109,10 @@ impl Server {
             }
             None => (None, None),
         };
-        let mut listeners = Vec::new();
-        for &addr in &config.server.listen {
-            let listener = TcpListener::bind(addr)
-                .await
-                .map_err(|source| ServeError::Bind { addr, source })?;
-            info!(addr = %listener.local_addr().unwrap_or(addr), "listening");
-            listeners.push(listener);
+        for listener in &listeners {
+            if let Ok(addr) = listener.local_addr() {
+                info!(%addr, "listening");
+            }
         }
         Ok(Self {
             shared: Arc::new(Shared {
