@@ -13,7 +13,7 @@ use tokio::task::JoinSet;
 use tracing::{Instrument, debug, error, info, info_span, warn};
 
 use crate::capture::{Capture, Direction};
-use crate::config::Config;
+use crate::config::{Advertise, Config};
 use crate::handler::{Handler, SetupError};
 use crate::http;
 
@@ -28,9 +28,12 @@ pub enum ServeError {
         addr: SocketAddr,
         source: std::io::Error,
     },
-    #[error("cannot adopt listener: {source}")]
-    Adopt { source: std::io::Error },
-    #[error("no listen address configured")]
+    #[error("cannot serve on listener {addr:?}: {source}")]
+    Adopt {
+        addr: Option<SocketAddr>,
+        source: std::io::Error,
+    },
+    #[error("no listen address given")]
     NoListener,
 }
 
@@ -52,49 +55,50 @@ pub struct Server {
 }
 
 impl Server {
-    pub async fn bind(config: &Config) -> Result<Self, ServeError> {
-        if config.server.listen.is_empty() {
-            return Err(ServeError::NoListener);
-        }
+    pub async fn bind(
+        config: &Config,
+        listen: &[SocketAddr],
+        advertise: &Advertise,
+    ) -> Result<Self, ServeError> {
         let mut listeners = Vec::new();
-        for &addr in &config.server.listen {
+        for &addr in listen {
             let listener = TcpListener::bind(addr)
                 .await
                 .map_err(|source| ServeError::Bind { addr, source })?;
             listeners.push(listener);
         }
-        Self::with_listeners(config, listeners).await
+        let handler = Handler::new(config, advertise)?;
+        Self::with_listeners(config, handler, listeners).await
     }
 
-    /// Serves on listeners bound by the caller; `config.server.listen` is ignored.
-    /// Must run inside a Tokio runtime.
+    /// Serves on listeners bound by the caller, with content loaded up front
+    /// by [`Handler::new`]. Must run inside a Tokio runtime.
     pub async fn with_std_listeners(
         config: &Config,
+        handler: Handler,
         listeners: Vec<std::net::TcpListener>,
     ) -> Result<Self, ServeError> {
         let listeners = listeners
             .into_iter()
             .map(|listener| {
-                let addr = listener
-                    .local_addr()
-                    .map_err(|source| ServeError::Adopt { source })?;
+                let addr = listener.local_addr().ok();
                 listener
                     .set_nonblocking(true)
                     .and_then(|()| TcpListener::from_std(listener))
-                    .map_err(|source| ServeError::Bind { addr, source })
+                    .map_err(|source| ServeError::Adopt { addr, source })
             })
             .collect::<Result<Vec<_>, _>>()?;
-        Self::with_listeners(config, listeners).await
+        Self::with_listeners(config, handler, listeners).await
     }
 
     async fn with_listeners(
         config: &Config,
+        handler: Handler,
         listeners: Vec<TcpListener>,
     ) -> Result<Self, ServeError> {
         if listeners.is_empty() {
             return Err(ServeError::NoListener);
         }
-        let handler = Handler::new(config)?;
         info!(
             zones = handler.content().zone_count(),
             announced_zones = handler.content().announced_zones().len(),

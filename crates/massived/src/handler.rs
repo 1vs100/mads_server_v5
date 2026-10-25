@@ -8,9 +8,7 @@ use std::time::{Instant, SystemTime, UNIX_EPOCH};
 use massive_proto::crypto::MacKey;
 use massive_proto::field::{Field, Hex, Tree, Value};
 use massive_proto::frame::Frame;
-use massive_proto::ids::{
-    HostName, InvalidText, Minutes, Port, Seconds, ServerOptions, ServerTime, Service, ZoneName,
-};
+use massive_proto::ids::{Minutes, Seconds, ServerOptions, ServerTime, Service, ZoneName};
 use massive_proto::request::{
     EnterZoneRequest, ImpressionUpdateRequest, OpenSessionRequest, OpenSessionSettings, Request,
     StatisticsRequest,
@@ -23,7 +21,7 @@ use massive_proto::{MessageType, ProtocolVersion};
 use thiserror::Error;
 use tracing::{debug, error, info, warn};
 
-use crate::config::{Config, MacPolicy, ServerTimeSource};
+use crate::config::{Advertise, Config, MacPolicy, ServerTimeSource};
 use crate::content::Content;
 use crate::http::{self, Status};
 use crate::session::{Observation, SessionMatch, Sessions};
@@ -33,8 +31,6 @@ const ASSET_CONTENT_TYPE: &str = "application/octet-stream";
 
 #[derive(Debug, Error)]
 pub enum SetupError {
-    #[error("advertised host {host:?} is not valid: {source}")]
-    Host { host: String, source: InvalidText },
     #[error(transparent)]
     Content(#[from] crate::content::ContentError),
 }
@@ -51,7 +47,7 @@ pub struct Handler {
 }
 
 impl Handler {
-    pub fn new(config: &Config) -> Result<Self, SetupError> {
+    pub fn new(config: &Config, advertise: &Advertise) -> Result<Self, SetupError> {
         let key = config
             .protocol
             .key
@@ -62,13 +58,7 @@ impl Handler {
                 "configured key differs from the retail literal; the client verifies responses with the literal"
             );
         }
-        let host = HostName::new(config.server.advertise_host.clone()).map_err(|source| {
-            SetupError::Host {
-                host: config.server.advertise_host.clone(),
-                source,
-            }
-        })?;
-        let port = Port(config.server.advertise_port);
+        let Advertise { host, port } = advertise.clone();
         let l = &config.locate;
         let locate = LocateServiceResponse {
             server_time: ServerTime(0),
@@ -88,7 +78,7 @@ impl Handler {
             logging_level: l.logging_level,
             value_57: l.value_57,
         };
-        let content = Content::load(config)?;
+        let content = Content::load(config, advertise)?;
         let zone_names = content.announced_zones().to_vec();
         Ok(Self {
             key,

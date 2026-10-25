@@ -4,11 +4,9 @@
 # Values marked "unknown" have no known retail value; they are chosen to
 # satisfy the client parser and should be varied in field tests.
 
+# Listen and advertised addresses are command line arguments (massived serve --help).
+
 [server]
-listen = ["0.0.0.0:8080"]
-# Placed in the locate response for the zone, media and impression services.
-advertise_host = "192.168.1.20"
-advertise_port = 8080
 idle_timeout_seconds = 30
 # Set to false to observe whether the client reuses connections.
 close_after_response = true

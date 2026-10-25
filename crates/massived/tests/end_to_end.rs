@@ -3,10 +3,11 @@
 use std::path::Path;
 
 use massive_proto::crypto::{MacAddress, MacKey};
-use massive_proto::ids::{SkuName, SkuVersion, ZoneName};
+use massive_proto::ids::{HostName, Port, SkuName, SkuVersion, ZoneName};
 use massived::capture::{self, Direction};
-use massived::config::Config;
+use massived::config::{Advertise, Config};
 use massived::decode::{self, Input};
+use massived::handler::Handler;
 use massived::probe::{self, ProbeError, ProbeOptions};
 use massived::server::Server;
 
@@ -16,11 +17,6 @@ fn write_config(dir: &Path, mac_policy: &str) -> Config {
     std::fs::write(dir.join("content/b.bin"), b"video bytes").unwrap();
     let text = format!(
         r#"
-[server]
-listen = ["127.0.0.1:0"]
-advertise_host = "127.0.0.1"
-advertise_port = 1
-
 [protocol]
 mac_policy = "{mac_policy}"
 
@@ -63,6 +59,13 @@ name = "Lobby_PT"
     Config::from_file(&path).unwrap()
 }
 
+fn advertise() -> Advertise {
+    Advertise {
+        host: HostName::new("127.0.0.1").unwrap(),
+        port: Port(1),
+    }
+}
+
 fn options(target: std::net::SocketAddr, zone: &str) -> ProbeOptions {
     ProbeOptions {
         target,
@@ -77,7 +80,9 @@ fn options(target: std::net::SocketAddr, zone: &str) -> ProbeOptions {
 async fn probe_passes_and_capture_decodes() {
     let dir = tempfile::tempdir().unwrap();
     let config = write_config(dir.path(), "enforce");
-    let server = Server::bind(&config).await.unwrap();
+    let server = Server::bind(&config, &["127.0.0.1:0".parse().unwrap()], &advertise())
+        .await
+        .unwrap();
     let target = server.local_addrs()[0];
     let (stop_tx, stop_rx) = tokio::sync::oneshot::channel::<()>();
     let serving = tokio::spawn(server.serve(async {
@@ -130,7 +135,9 @@ async fn probe_passes_and_capture_decodes() {
 async fn bad_mac_is_refused_when_enforced() {
     let dir = tempfile::tempdir().unwrap();
     let config = write_config(dir.path(), "enforce");
-    let server = Server::bind(&config).await.unwrap();
+    let server = Server::bind(&config, &["127.0.0.1:0".parse().unwrap()], &advertise())
+        .await
+        .unwrap();
     let target = server.local_addrs()[0];
     let (stop_tx, stop_rx) = tokio::sync::oneshot::channel::<()>();
     let serving = tokio::spawn(server.serve(async {
@@ -157,6 +164,32 @@ async fn bad_mac_is_refused_when_enforced() {
         .await
         .unwrap();
     assert_eq!(response.code, 400);
+
+    stop_tx.send(()).unwrap();
+    serving.await.unwrap();
+}
+
+#[tokio::test]
+async fn serves_on_caller_bound_blocking_listener() {
+    let dir = tempfile::tempdir().unwrap();
+    let config = write_config(dir.path(), "enforce");
+    let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
+    let target = listener.local_addr().unwrap();
+    let advertise = Advertise {
+        host: HostName::new("127.0.0.1").unwrap(),
+        port: Port(target.port()),
+    };
+    let handler = Handler::new(&config, &advertise).unwrap();
+    let server = Server::with_std_listeners(&config, handler, vec![listener])
+        .await
+        .unwrap();
+    let (stop_tx, stop_rx) = tokio::sync::oneshot::channel::<()>();
+    let serving = tokio::spawn(server.serve(async {
+        let _ = stop_rx.await;
+    }));
+
+    let report = probe::run(&options(target, "Lobby_PT")).await.unwrap();
+    assert_eq!(report.downloads, 2);
 
     stop_tx.send(()).unwrap();
     serving.await.unwrap();

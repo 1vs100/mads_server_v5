@@ -3,15 +3,24 @@
 //! The file describes what the server advertises and serves. It is checked
 //! completely at load time, see [`crate::content::Content::load`].
 
-use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
 
+use massive_proto::ids::{HostName, Port};
 use serde::Deserialize;
 use thiserror::Error;
+
+/// Where clients reach the server: placed in the locate response for every
+/// service and in asset URLs. Comes from the command line, not the file.
+#[derive(Debug, Clone)]
+pub struct Advertise {
+    pub host: HostName,
+    pub port: Port,
+}
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Config {
+    #[serde(default)]
     pub server: ServerConfig,
     #[serde(default)]
     pub protocol: ProtocolConfig,
@@ -29,16 +38,21 @@ pub struct Config {
 #[derive(Debug, Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ServerConfig {
-    pub listen: Vec<SocketAddr>,
-    /// Host name or address placed in the locate response for every service.
-    pub advertise_host: String,
-    pub advertise_port: u16,
     #[serde(default = "default_idle_timeout")]
     pub idle_timeout_seconds: u64,
     /// Close the connection after each response. Disable to observe whether
     /// the client reuses connections.
     #[serde(default = "default_true")]
     pub close_after_response: bool,
+}
+
+impl Default for ServerConfig {
+    fn default() -> Self {
+        Self {
+            idle_timeout_seconds: default_idle_timeout(),
+            close_after_response: true,
+        }
+    }
 }
 
 fn default_idle_timeout() -> u64 {

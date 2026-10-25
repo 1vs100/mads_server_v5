@@ -8,7 +8,7 @@ publish = false
 
 [workspace.dependencies]
 massive-proto = { path = "crates/massive-proto" }
-clap = { version = "4.6", features = ["derive"] }
+clap = { version = "4.6", features = ["derive", "env"] }
 hex = "0.4"
 hmac = "0.12"
 httparse = "1.10"
