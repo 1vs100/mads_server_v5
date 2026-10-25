@@ -3,7 +3,6 @@ name = "massive-proto"
 version = "0.1.0"
 description = "Codec for the Massive Inc. ad client protocol, revision 5 (1 vs 100, Xbox 360)"
 edition.workspace = true
-rust-version.workspace = true
 publish.workspace = true
 
 [dependencies]
