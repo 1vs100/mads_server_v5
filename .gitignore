@@ -1,0 +1,8 @@
+/target
+/massive-book/book
+__pycache__/
+*.pyc
+retail-content/
+example-content/
+*.jsonl
+/work

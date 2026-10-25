@@ -1,0 +1,124 @@
+# massived example configuration.
+#
+# Relative paths are resolved against the directory of this file.
+# Values marked "unknown" have no known retail value; they are chosen to
+# satisfy the client parser and should be varied in field tests.
+
+[server]
+listen = ["0.0.0.0:8080"]
+# Placed in the locate response for the zone, media and impression services.
+advertise_host = "192.168.1.20"
+advertise_port = 8080
+idle_timeout_seconds = 30
+# Set to false to observe whether the client reuses connections.
+close_after_response = true
+
+[protocol]
+# "enforce" answers requests with a bad MAC with HTTP 400; "report" logs and continues.
+mac_policy = "enforce"
+# Locate field 0x3B; unit unknown. "unix-milliseconds", "unix-seconds" or { fixed = N }.
+server_time = "unix-milliseconds"
+
+[locate]
+auto_reporting_time_seconds = 30
+# Heartbeat and statistics periods in minutes; the test server sent 0 and 10.
+heartbeat_period_minutes = 1
+statistic_period_minutes = 1
+
+[capture]
+path = "capture.jsonl"
+
+[content]
+directory = "example-content"
+url_template = "http://{host}:{port}/assets/{asset_id}"
+# Zones announced in OpenSession. The default is the 14 zones of the retail
+# data.lua; configured zones missing from the list are appended.
+# announce_zones = ["Lobby_PT", "CommercialBreak1"]
+
+# Assets are shared by all zones. The SHA-1 digest and size are computed
+# from the file.
+
+[[asset]]
+id = 100
+file = "texture.bin"
+asset_type = 0          # unknown
+rotation_duration = 1   # display time in ms, must be non-zero
+expiration = 1          # Unix time in ms, must be non-zero
+crex_id = 1             # creative id; zero disables the client's CreateAsset checks
+
+[[asset]]
+id = 200
+file = "video15.bin"
+asset_type = 0
+
+[[asset]]
+id = 300
+file = "video30.bin"
+asset_type = 0
+
+# Zone names and IE names come from the game's Lua (ads.lua, data.lua).
+# Media type ranges: below 0x400 texture, 0x401..0x7FF video,
+# 0x801..0xFFF audio, above 0x1000 model; 0x400, 0x800 and 0x1000 are rejected.
+
+[[zone]]
+name = "Lobby_PT"
+
+  [[zone.order]]
+  order_id = 1
+  frequency_cap = 100     # unknown semantics
+  assets = [100, 200, 300]
+
+  [[zone.placement]]
+  ie_name = "Text_1"
+  ie_id = 1
+  media_type = 0x001      # texture range; retail value unknown
+  assets = [100]
+
+  [[zone.placement]]
+  ie_name = "Text_2"
+  ie_id = 2
+  media_type = 0x001
+  assets = [100]
+
+  [[zone.placement]]
+  ie_name = "Text_3"
+  ie_id = 3
+  media_type = 0x001
+  assets = [100]
+
+  [[zone.placement]]
+  ie_name = "Text_4"
+  ie_id = 4
+  media_type = 0x001
+  assets = [100]
+
+  [[zone.placement]]
+  ie_name = "Video15_1"
+  ie_id = 11
+  media_type = 0x401      # video range; retail value unknown
+  assets = [200]
+
+  [[zone.placement]]
+  ie_name = "Video15_2"
+  ie_id = 12
+  media_type = 0x401
+  assets = [200]
+
+  [[zone.placement]]
+  ie_name = "Video30_1"
+  ie_id = 21
+  media_type = 0x401
+  assets = [300]
+
+[[zone]]
+name = "CommercialBreak1"
+
+  [[zone.order]]
+  order_id = 2
+  assets = [200]
+
+  [[zone.placement]]
+  ie_name = "Video15_1"
+  ie_id = 11
+  media_type = 0x401
+  assets = [200]

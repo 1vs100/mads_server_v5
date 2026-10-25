@@ -1,0 +1,4 @@
+doc-valid-idents = [
+    "LocateService", "OpenSession", "CloseSession", "EnterZone", "ExitZone",
+    "ImpressionUpdate", "PlayerUpdate", "DownloadBinary", "IPv4", "ORed", "..",
+]
