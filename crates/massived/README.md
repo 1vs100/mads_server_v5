@@ -10,8 +10,8 @@ The protocol codec is the `massive-proto` crate in this workspace.
 ## Commands
 
 ```text
-massived serve -c massived.toml           serve the protocol
-massived check-config -c massived.toml    validate configuration and asset files
+massived serve -c massived.toml --listen 0.0.0.0:1002 --advertise-host ads.example.net   serve the protocol
+massived check-config -c massived.toml --advertise-host ads.example.net --advertise-port 1002   validate configuration and asset files
 massived probe --target HOST:PORT         run the retail request sequence against a server
 massived decode --capture capture.jsonl   decode a capture
 massived decode --hex 05d70000...         decode one message or HTTP exchange
@@ -33,10 +33,13 @@ the client's own rules: media types that select no object class, asset
 records that would make `CreateAsset` report an error, and references to
 undefined assets are rejected.
 
-The client obtains the server address through the game's XLSP lookup on the
-tag `MASSIVE`. That lookup is outside this program; point it at one of the
-`listen` addresses. The locate response then advertises `advertise_host` and
-`advertise_port` for all three services.
+The file holds content and protocol settings only. Addresses are arguments, each also read from the environment:
+
+- `--listen` (`MASSIVED_LISTEN`): addresses to accept connections on, comma separated.
+- `--advertise-host` (`MASSIVED_ADVERTISE_HOST`): host name or IPv4 address the client is told to use for all three services and in asset URLs.
+- `--advertise-port` (`MASSIVED_ADVERTISE_PORT`): defaults to the first `--listen` port.
+
+The client obtains the server address through the game's XLSP lookup on the tag `MASSIVE`. That lookup is outside this program; point it at one of the `listen` addresses.
 
 Every OpenSession response lists the zones of `content.announce_zones` in field `0x47`, followed by any configured zone missing from it. The default is the 14 zones of the retail `data.lua` (`ZonesPT`, `ZonesEP`). EnterZone for an announced zone without content returns an empty zone and logs `unknown_zone`.
 

@@ -14,7 +14,7 @@ use massive_proto::response::{AssetRecord, EnterZoneResponse, MaoRecord, Order};
 use thiserror::Error;
 use tracing::warn;
 
-use crate::config::{AssetConfig, Config, ZoneConfig};
+use crate::config::{Advertise, AssetConfig, Config, ZoneConfig};
 
 #[derive(Debug, Error)]
 pub enum ContentError {
@@ -87,11 +87,11 @@ pub struct Content {
 }
 
 impl Content {
-    pub fn load(config: &Config) -> Result<Self, ContentError> {
+    pub fn load(config: &Config, advertise: &Advertise) -> Result<Self, ContentError> {
         let mut records = HashMap::new();
         let mut assets_by_path = HashMap::new();
         for asset in &config.assets {
-            let (record, stored) = load_asset(config, asset)?;
+            let (record, stored) = load_asset(config, advertise, asset)?;
             let path = url_path(stored.url.as_str()).to_owned();
             if records.insert(asset.id, record).is_some() {
                 return Err(ContentError::DuplicateAsset { asset_id: asset.id });
@@ -169,7 +169,11 @@ pub fn url_path(url: &str) -> &str {
         .unwrap_or(url)
 }
 
-fn render_url(config: &Config, asset_id: u32) -> Result<String, ContentError> {
+fn render_url(
+    config: &Config,
+    advertise: &Advertise,
+    asset_id: u32,
+) -> Result<String, ContentError> {
     let template = &config.content.url_template;
     let mut out = String::new();
     let mut rest = template.as_str();
@@ -181,8 +185,8 @@ fn render_url(config: &Config, asset_id: u32) -> Result<String, ContentError> {
             placeholder: after.to_owned(),
         })?;
         match &after[..end] {
-            "host" => out.push_str(&config.server.advertise_host),
-            "port" => out.push_str(&config.server.advertise_port.to_string()),
+            "host" => out.push_str(advertise.host.as_str()),
+            "port" => out.push_str(&advertise.port.0.to_string()),
             "asset_id" => out.push_str(&asset_id.to_string()),
             other => {
                 return Err(ContentError::UrlTemplate {
@@ -199,6 +203,7 @@ fn render_url(config: &Config, asset_id: u32) -> Result<String, ContentError> {
 
 fn load_asset(
     config: &Config,
+    advertise: &Advertise,
     asset: &AssetConfig,
 ) -> Result<(AssetRecord, StoredAsset), ContentError> {
     let file = config.content.directory.join(&asset.file);
@@ -212,7 +217,11 @@ fn load_asset(
         path: file.clone(),
         len: body.len(),
     })?;
-    let url = text("asset URL", &render_url(config, asset.id)?, AssetUrl::new)?;
+    let url = text(
+        "asset URL",
+        &render_url(config, advertise, asset.id)?,
+        AssetUrl::new,
+    )?;
     let record = AssetRecord {
         asset_id: AssetId(asset.id),
         expiration: Expiration(asset.expiration),

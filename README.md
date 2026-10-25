@@ -11,8 +11,8 @@
 
 ```text
 cargo test --workspace
-cargo run -p massived -- check-config -c crates/massived/massived.example.toml
-cargo run -p massived -- serve -c crates/massived/massived.example.toml
+cargo run -p massived -- check-config -c crates/massived/massived.example.toml --advertise-host 127.0.0.1 --advertise-port 1002
+cargo run -p massived -- serve -c crates/massived/massived.example.toml --listen 127.0.0.1:1002 --advertise-host 127.0.0.1
 ```
 
 Changes to the protocol knowledge go to the book chapter, `status.md` and

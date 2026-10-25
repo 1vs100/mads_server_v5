@@ -4,8 +4,8 @@ use std::process::ExitCode;
 
 use clap::{Parser, Subcommand};
 use massive_proto::crypto::{InvalidMacAddress, MacAddress, MacKey};
-use massive_proto::ids::{InvalidText, SkuName, SkuVersion, ZoneName};
-use massived::config::{Config, ConfigFileError};
+use massive_proto::ids::{HostName, InvalidText, Port, SkuName, SkuVersion, ZoneName};
+use massived::config::{Advertise, Config, ConfigFileError};
 use massived::decode::{self, DecodeCommandError, Input};
 use massived::handler::{Handler, SetupError};
 use massived::logging::{self, Format};
@@ -35,6 +35,8 @@ enum CommandError {
     MacAddress(#[from] InvalidMacAddress),
     #[error("one of --hex, --file or --capture is required")]
     MissingInput,
+    #[error("--advertise-port is required")]
+    MissingAdvertisePort,
 }
 
 fn text_arg<T>(
@@ -64,17 +66,48 @@ struct Cli {
     command: Command,
 }
 
+/// Where clients reach the server, placed in the locate response and asset URLs.
+#[derive(Debug, clap::Args)]
+struct AdvertiseArgs {
+    /// Host name or IPv4 address.
+    #[arg(long, env = "MASSIVED_ADVERTISE_HOST")]
+    advertise_host: String,
+    /// Defaults to the port of the first --listen address.
+    #[arg(long, env = "MASSIVED_ADVERTISE_PORT")]
+    advertise_port: Option<u16>,
+}
+
+impl AdvertiseArgs {
+    fn resolve(self, listen: &[SocketAddr]) -> Result<Advertise, CommandError> {
+        let port = self
+            .advertise_port
+            .or_else(|| listen.first().map(SocketAddr::port))
+            .ok_or(CommandError::MissingAdvertisePort)?;
+        Ok(Advertise {
+            host: text_arg("advertise-host", self.advertise_host, HostName::new)?,
+            port: Port(port),
+        })
+    }
+}
+
 #[derive(Debug, Subcommand)]
 enum Command {
     /// Serve the protocol.
     Serve {
         #[arg(short, long)]
         config: PathBuf,
+        /// Address to accept connections on; repeat or separate with commas.
+        #[arg(long, env = "MASSIVED_LISTEN", value_delimiter = ',', required = true)]
+        listen: Vec<SocketAddr>,
+        #[command(flatten)]
+        advertise: AdvertiseArgs,
     },
     /// Load and validate a configuration, including all asset files.
     CheckConfig {
         #[arg(short, long)]
         config: PathBuf,
+        #[command(flatten)]
+        advertise: AdvertiseArgs,
     },
     /// Decode a message, an HTTP exchange or a capture file.
     Decode {
@@ -134,9 +167,14 @@ fn main() -> ExitCode {
 
 async fn run(command: Command) -> Result<(), CommandError> {
     match command {
-        Command::Serve { config } => {
+        Command::Serve {
+            config,
+            listen,
+            advertise,
+        } => {
             let config = Config::from_file(&config)?;
-            let server = Server::bind(&config).await?;
+            let advertise = advertise.resolve(&listen)?;
+            let server = Server::bind(&config, &listen, &advertise).await?;
             server
                 .serve(async {
                     if let Err(e) = tokio::signal::ctrl_c().await {
@@ -146,9 +184,9 @@ async fn run(command: Command) -> Result<(), CommandError> {
                 .await;
             Ok(())
         }
-        Command::CheckConfig { config } => {
+        Command::CheckConfig { config, advertise } => {
             let config = Config::from_file(&config)?;
-            let handler = Handler::new(&config)?;
+            let handler = Handler::new(&config, &advertise.resolve(&[])?)?;
             info!(
                 zones = handler.content().zone_count(),
                 announced_zones = handler.content().announced_zones().len(),
