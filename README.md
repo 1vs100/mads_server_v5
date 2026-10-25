@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/ai-slop-orange)
+
 # Massive ad protocol, revision 5 (1 vs 100, Xbox 360)
 
 | Path | Content |
