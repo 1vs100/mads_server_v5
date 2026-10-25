@@ -4,7 +4,6 @@ members = ["crates/massive-proto", "crates/massived"]
 
 [workspace.package]
 edition = "2024"
-rust-version = "1.85"
 publish = false
 
 [workspace.dependencies]

@@ -3,7 +3,6 @@ name = "massived"
 version = "0.1.0"
 description = "Field server for the Massive ad client protocol, revision 5"
 edition.workspace = true
-rust-version.workspace = true
 publish.workspace = true
 
 [dependencies]
