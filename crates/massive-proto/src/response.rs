@@ -822,6 +822,6 @@ mod tests {
             vec![AssetFault::AssetIdZero, AssetFault::Value06OrExpirationZero]
         );
         asset.crex_id = CrexId(0);
-        assert!(asset.faults().is_empty());
+        assert_eq!(asset.faults(), []);
     }
 }
