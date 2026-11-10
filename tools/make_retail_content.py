@@ -2,7 +2,7 @@
 """Builds a massived content set for every retail zone and IE.
 
 Videos are the season sponsor videos of the show packages (WMV3, 15 s and
-30 s). Static images are generated 300x250 PNGs, the size the Massive test
+30 s), or the ones tools/make_ad_videos.sh generates. Static images are generated 300x250 PNGs, the size the Massive test
 server served for the Text IEs. Field values follow the v1.0.808.0 capture.
 
     tools/make_retail_content.py --dlcs ../common/game_builds/dlcs \
