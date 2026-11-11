@@ -1,5 +1,5 @@
 /target
-/massive-book/book
+/docs/book
 __pycache__/
 *.pyc
 retail-content/
