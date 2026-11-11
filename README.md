@@ -1,6 +1,8 @@
-![Static Badge](https://img.shields.io/badge/ai-slop-orange)
-
 # Massive ad protocol, revision 5 (1 vs 100, Xbox 360)
+
+[![ci](https://github.com/1vs100/mads_server_v5/actions/workflows/ci.yml/badge.svg)](https://github.com/1vs100/mads_server_v5/actions/workflows/ci.yml)
+[![docs](https://img.shields.io/badge/docs-docs.1vs100.fans-blue?logo=readthedocs&logoColor=white)](https://docs.1vs100.fans/mads_server_v5/)
+![Static Badge](https://img.shields.io/badge/ai-slop-orange)
 
 | Path | Content |
 |---|---|
