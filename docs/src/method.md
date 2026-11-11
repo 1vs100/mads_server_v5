@@ -20,7 +20,7 @@
 4. **Read the response parsers the same way**, starting with the status byte and section tags, then the sub-tag dispatch tables (`ReadAssetBlock` uses a byte jump table at `0x82084998`).
 5. **Trace the value sources** with cross-references to the globals (`qword_82A0EEA8`, `qword_82A0EEB0`, `dword_82A0EF08`, `dword_82A0EF04`, client fields `+0x158/+0x15C`).
 6. **Rename in the IDB.** All identified functions were renamed (`massive_*`, `lua_Massive_*`) and the database was saved. The rename table is `work/ida/renames.py`. Helpers are in `work/ida/helpers.py`.
-7. **Verify by reconstruction.** The framing, HMAC and body builders were written in Python (`work/massive_envelope.py`) and round-trip tested, which checks the framing is self-consistent.
+7. **Verify by reconstruction.** The framing, HMAC and body builders were written in Python (`tools/massive_envelope.py`) and round-trip tested, which checks the framing is self-consistent.
 8. **Carry names over from the debug build.** A FLIRT signature built from the v1.0.808.0 database (`rev3/tools/ida-1vs100-retail/signatures/1vs100-808-debug.sig`) and a function matcher (code hash, string references, call graph, link order, opcode n-grams; result in `808-to-1149-matches.json`) named 8 300 further functions in the retail database. Matcher names carry a function comment with the debug build address and the match method. Existing `massive_*` names were kept.
 9. **Check against the capture.** The debug client logs every field it writes and reads, and dumps each request. The dumps were decoded with the tag tables of this book and with `massive-proto`.
 

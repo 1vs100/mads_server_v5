@@ -116,4 +116,4 @@ Each item below is checked with `massived` against a console or emulator. The da
 
 ## Reproduction
 
-The helper functions (`dis`, `callers`, `strrefs`, `ccalls`) are in `work/ida/helpers.py`. The renames are in `work/ida/renames.py`. The Rust implementation and its tests are in `crates/massive-proto`; the Python reference is in `work/massive_envelope.py`.
+The helper functions (`dis`, `callers`, `strrefs`, `ccalls`) are in `work/ida/helpers.py`. The renames are in `work/ida/renames.py`. The Rust implementation and its tests are in `crates/massive-proto`; the Python reference is in `tools/massive_envelope.py`.

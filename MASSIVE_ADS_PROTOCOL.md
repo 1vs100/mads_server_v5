@@ -7,7 +7,7 @@ Reverse-engineering notes: Lua game layer + native MassiveAdClient3 library.
 Sources:
 - Lua: `common/game_builds/v2.0.1149.0.02-2009-10-26_retail/584A07D1/00000002/extracted/lua/` (`ads.lua`, `epads.lua`, `adscreens.lua`, `config.lua`, `data.lua`, `onevslive.lua`, `stateloadingscreen.lua`, `statelobby.lua`, `stateroundstart.lua`, `stateextendedplay.lua`).
 - Native: `default.xex` loaded in the IDA driver `rev3/tools/ida-1vs100-retail` (PPC, base 0x82000000).
-- Work products in this folder: `work/asm/` and `work/asm2/` (disassembly listings), `work/INDEX.md` (function index), `work/massive_envelope.py` (reference framing code + self-test), `work/strings_massive_region.txt` (strings).
+- Work products in this folder: `work/asm/` and `work/asm2/` (disassembly listings), `work/INDEX.md` (function index), `tools/massive_envelope.py` (reference framing code + self-test), `work/strings_massive_region.txt` (strings).
 
 ## 0. Confidence legend
 
@@ -208,7 +208,7 @@ Observed type codes (first argument to `sub_824FA478`): `0xC9` locate (no time, 
 
 Notes:
 - The HMAC key is the literal 32-character string `11111111111111111111111111111111` (ASCII 0x31 ×32). It is a constant, not a secret. It is also sent as field `D` in the OpenSession body (§5.2).
-- The reference implementation `work/massive_envelope.py` reproduces `seal()`/`unseal()`. Its self-test checks the round trip and the MAC. It has **not** been checked against a real server.
+- The reference implementation `tools/massive_envelope.py` reproduces `seal()`/`unseal()`. Its self-test checks the round trip and the MAC. It has **not** been checked against a real server.
 
 ### 5.2 Primitives (append semantics) [C]
 
@@ -438,5 +438,5 @@ Cache jobs: `CFileAsyncWorker` (`CCacheJobReadFile/WriteFile/DeleteFile/ClearCac
 
 - Listings: `work/asm/*.s` (60 annotated key functions) and `work/asm2/*.s` (322 functions, one per file; `work/asm2/_index.txt` lists them).
 - Function index with roles: `work/INDEX.md`.
-- Framing self-test: `python3 work/massive_envelope.py`.
+- Framing self-test: `python3 tools/massive_envelope.py`.
 - The IDA driver was used for read-only queries. No rename, comment, or save calls were issued.

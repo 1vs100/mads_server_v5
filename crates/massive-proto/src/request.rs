@@ -622,7 +622,7 @@ mod tests {
         }
     }
 
-    /// Vectors produced by `work/massive_envelope.py`.
+    /// Vectors produced by `tools/massive_envelope.py`.
     #[test]
     fn matches_python_reference() {
         let key = MacKey::retail();

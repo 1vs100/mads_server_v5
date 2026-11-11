@@ -2,10 +2,10 @@
 
 The maintained implementation is the Rust crate `crates/massive-proto`, with the field server `crates/massived`. The Python reference below is kept for comparison; the Rust tests check that both produce the same bytes.
 
-The Python reference is in `work/massive_envelope.py` (included below). It implements the sealing, the body primitives, the request bodies, the response framing and the MAC checks. Running it executes a self-test:
+The Python reference is in `tools/massive_envelope.py` (included below). It implements the sealing, the body primitives, the request bodies, the response framing and the MAC checks. Running it executes a self-test:
 
 ```text
-$ python3 work/massive_envelope.py
+$ python3 tools/massive_envelope.py
 massive_envelope self-test OK (framing is internally consistent; not validated against live traffic)
 ```
 
@@ -24,5 +24,5 @@ The self-test does **not** prove the layout matches a real server.
 ## massive_envelope.py
 
 ```python
-{{#include ../../work/massive_envelope.py}}
+{{#include ../../tools/massive_envelope.py}}
 ```
